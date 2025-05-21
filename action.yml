@@ -47,10 +47,6 @@ runs:
         sleep 3
         isready=0
 
-        ls -lah ./
-
-        ls -lah ${{ github.action_path }}
-
         for i in {1..10}; do
           echo "Wait for connections to be ready ... $i/10"
           (/__w/_actions/fgerthoffert/ssh-port-forward-action/dev/wait-for-it.sh --quiet --timeout=3 --host=127.0.0.1 --port=${{ inputs.local-port }} || exit $?) && true # escape bash's pipefail
